@@ -2,6 +2,7 @@ package pcl.openprinter.util;
 
 public class CharacterWidth {
     private static int CharacterWidths[] = new int[128];
+    public static int maxWidth = 164;
 
     public static void initWidths() {
         /* I'm sorry */
@@ -47,7 +48,6 @@ public class CharacterWidth {
                 switch (Character.toString(str.charAt(i))) {
                     case "l":
                         offset = 1;
-                        System.out.println("Setting bold.");
                         break;
                     case "r":
                         offset = 0;
@@ -55,6 +55,7 @@ public class CharacterWidth {
                 }
                 cc = false;
             } else {
+                // section sign means it's probably an escape sequence.
                 if (str.charAt(i) == ("§").charAt(0)) {
                     cc =  true;
                 } else {
@@ -62,7 +63,7 @@ public class CharacterWidth {
                     if ((int) str.charAt(i) > CharacterWidths.length) {
                         rlen = rlen + 5;
                     } else {
-                        rlen = rlen + CharacterWidths[(int) str.charAt(i)];
+                        rlen = rlen + CharacterWidths[Math.min((int) str.charAt(i), CharacterWidths.length)];
                     }
                 }
             }

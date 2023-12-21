@@ -515,7 +515,7 @@ public class PrinterTE extends TileEntity implements ITickable, Environment {
 			}
 		}
 
-		lines.add(args.checkString(0));
+		lines.add(CharacterWidth.limitWidth(args.checkString(0), CharacterWidth.maxWidth));
 		colors.add(color);
 		align.add(alignment);
 		return new Object[] { true };
@@ -567,7 +567,7 @@ public class PrinterTE extends TileEntity implements ITickable, Environment {
 
         @Callback(doc = "function():Integer; -- returns the maximum allowed width of a line", direct = true)
         public Object[] maxWidth(Context context, Arguments args) {
-		return new Object[] { 164 };
+		return new Object[] { CharacterWidth.maxWidth };
         }
 
 	@Callback(doc = "function():boolean; -- clears the printer buffer")

@@ -85,8 +85,8 @@ public class PaperGUI extends GuiScreen {
 				String[] parts = output.split("∞");
 				if(parts.length > 1) {
 					Integer outleng = parts[0].replaceAll("(?:§[0-9a-fk-or])+", "").length();
-					if (outleng > 30) {
-						parts[0] = CharacterWidth.limitWidth(parts[0],164);
+					if (outleng > 23 && CharacterWidth.calculateWidth(parts[0]) > CharacterWidth.maxWidth) {
+						parts[0] = CharacterWidth.limitWidth(parts[0],CharacterWidth.maxWidth);
 					}
 					Integer color = Integer.parseInt(parts[1]);
 					String alignment = parts[2];
@@ -130,8 +130,8 @@ public class PaperGUI extends GuiScreen {
 				String[] parts = output.split("∞");
 				if(parts.length > 1) {
 					Integer outleng = parts[0].replaceAll("(?:§[0-9a-fk-or])+", "").length();
-					if (outleng > 30) {
-						parts[0] = CharacterWidth.limitWidth(parts[0],164);
+					if (outleng > 23 && CharacterWidth.calculateWidth(parts[0]) > CharacterWidth.maxWidth) {
+						parts[0] = CharacterWidth.limitWidth(parts[0],CharacterWidth.maxWidth);
 					}
 
 					Integer color = 0;
